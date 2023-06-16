@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>김성준</title>
+    <script src="../4ex_form2.js"></script>
+    <style>
+      .header {
+        background: black;
+        color: tomato;
+      }
+      .state {
+        color: greenyellow;
+      }
+      input {
+        margin: 10px 0;
+      }
+    </style>
+    <script>
+      modalBtn.addEventListener("click", () => {
+        if (modalBtn) {
+          modal.style.display = "block";
+        } else {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="head_tit">
+        어서오세요 성준서버입니다. 서버 상태 : <span class="state">ON</span>
+      </h1>
+    </div>
+    <form action="data">
+      <div>
+        이름 : <input type="text" name="name" required /><br />
+        나이 : <input type="text" name="age" required /><br />
+        성별 : <input type="text" name="gender" required /><br />
+        메모 : <textarea name="memo" id="" cols="30" rows="10"></textarea><br />
+        날짜 : <input type="date" name="date" required /><br />
+        <input type="reset" />
+        <input type="submit" />
+      </div>
+    </form>
+  </body>
+</html>
