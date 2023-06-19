@@ -16,9 +16,6 @@ app.get('/main/data',(req,res)=>{
     console.log(name,age,content)
 })
 
-
-
-
 app.listen(PORT,()=>{
     console.log(`너의 서버는? ${PORT}!`)
 })
