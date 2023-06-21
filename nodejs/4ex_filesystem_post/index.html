@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>김성준</title>
+    <link rel="icon" href="./favicon.ico" />
+  </head>
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+    .header {
+      background: black;
+      color: tomato;
+      display: flex;
+      justify-content: space-between;
+    }
+    h3 {
+      float: right;
+      margin: 10px;
+    }
+    .state {
+      color: greenyellow;
+    }
+    form {
+      padding: 30px;
+    }
+    @keyframes header {
+      0% {
+        transform: translateX(-30px);
+      }
+      100% {
+        transform: translateX(400px);
+      }
+    }
+  </style>
+  <body>
+    <div class="header">
+      <h1 class="head_tit">
+        어서오세요 성준서버입니다.
+        <h3>서버 상태 : <span class="state">ON</span></h3>
+      </h1>
+    </div>
+    <form action="data" method="post">
+      <div>
+        제목 : <input type="text" name="name" /><br />
+        내용 : <textarea name="content" id="" cols="30" rows="10"></textarea
+        ><br />
+        <input type="reset" />
+        <input type="submit" /><br /><br />
+        <a href="http://localhost:3000/list"
+          ><img src="./Nari2.jpg" alt="나리" width="200px" height="200px"
+        /></a>
+      </div>
+    </form>
+  </body>
+</html>
