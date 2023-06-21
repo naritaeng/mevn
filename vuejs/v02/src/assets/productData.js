@@ -28,5 +28,17 @@ export default [
     price: 51000,
     category: '노트북/태블릿',
     delivery_price: 5000
+  },
+  {
+    product_name: '무선마우스',
+    price: 34000,
+    category: '노트북/태블릿',
+    delivery_price: 3000
+  },
+  {
+    product_name: '무선헤드셋',
+    price: 260000,
+    category: '노트북/태블릿',
+    delivery_price: 5000
   }
 ]

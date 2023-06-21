@@ -3,6 +3,9 @@
   <h3>가져온 데이터</h3>
   <p>{{ dataArr }}</p>
   <hr />
+  <h4>
+    얼마 이상의 물품을 출력할까요? : <input type="text" v-model="inUser" />
+  </h4>
   <table>
     <tr>
       <th>카테고리</th>
@@ -19,9 +22,6 @@
       </tr>
     </template>
   </table>
-  <h4>
-    얼마 이상의 물품을 출력할까요? : <input type="text" v-model="inUser" />
-  </h4>
 </template>
 <script>
 import data from '../assets/productData.js'
