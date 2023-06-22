@@ -25,6 +25,8 @@
       color: greenyellow;
     }
     form {
+      width: 100%;
+      height: 100%;
       padding: 30px;
     }
     @keyframes header {
@@ -35,24 +37,49 @@
         transform: translateX(400px);
       }
     }
+    .main {
+      display: flex;
+      flex-direction: column;
+      background: beige;
+    }
+    .title {
+      width: 300px;
+      height: 100px;
+      margin: auto;
+    }
+    .title > input {
+      width: 80%;
+      height: 40%;
+    }
+    .resu_btn {
+      width: 30%;
+      height: 50px;
+      margin: 10px auto;
+    }
   </style>
   <body>
     <div class="header">
       <h1 class="head_tit">
         어서오세요 성준서버입니다.
-        <h3>서버 상태 : <span class="state">ON</span></h3>
+        <h3>서버 : <span class="state">ON</span></h3>
       </h1>
     </div>
     <form action="data" method="post">
-      <div>
-        제목 : <input type="text" name="name" /><br />
-        내용 : <textarea name="content" id="" cols="30" rows="10"></textarea
-        ><br />
-        <input type="reset" />
-        <input type="submit" /><br /><br />
-        <a href="http://localhost:3000/list"
-          ><img src="./Nari2.jpg" alt="나리" width="200px" height="200px"
-        /></a>
+      <div class="main">
+        <div class="title">
+          <span>제목 : </span><input type="text" name="name" />
+        </div>
+        <div class="content">
+          <span>내용 : </span
+          ><textarea name="content" id="" cols="30" rows="10"></textarea>
+        </div>
+        <input class="resu_btn" type="reset" />
+        <input class="resu_btn" type="submit" />
+        <div class="img_link">
+          <a href="http://localhost:3000/list"
+            ><img src="./Nari2.jpg" alt="나리" width="200px" height="200px"
+          /></a>
+        </div>
       </div>
     </form>
   </body>
