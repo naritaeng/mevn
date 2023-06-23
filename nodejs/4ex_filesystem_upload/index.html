@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 60%;
+        margin: 30px auto;
+        background: beige;
+        box-shadow: 3px 3px 5px;
+        padding: 10px;
+      }
+      #filecss {
+        display: none;
+      }
+      #up {
+        display: inline-block;
+        border-radius: 10px;
+        width: 50px;
+        height: 50px;
+        background: cornflowerblue;
+        font-size: 2rem;
+        text-align: center;
+        color: #fff;
+        box-shadow: 2px 2px 3px;
+      }
+      #up:hover {
+        background: lightcoral;
+      }
+      #send {
+        float: right;
+        width: 40px;
+        height: 40px;
+        background: #ecc7c7;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 2px 2px 3px;
+      }
+      #send:hover {
+        background: lime;
+      }
+      #info {
+        display: inline-block;
+      }
+      #submit {
+        width: 50px;
+        height: 30px;
+        background: #ecc7c7;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px;
+      }
+      #submit:hover {
+        background: lime;
+      }
+    </style>
+    <script>
+      /* 파일사이즈 제한 */
+      function checkSize(input) {
+        const ss = 10 // MB
+        if (input.files[0].size > ss * 1024 * 1024) {
+          alert(`파일사이즈가 ${ss}MB가 넘습니다.`)
+          input.value = null
+        } // 10 MB의 사이즈
+        const name = document.querySelector('#info')
+        name.textContent = input.files[0].name
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/mkdir">
+        <input type="text" name="mk" placeholder="생성할 폴더 이름" />
+        <input type="submit" id="submit" />
+      </form>
+      <hr />
+      <form action="/up" method="post" enctype="multipart/form-data">
+        <input
+          type="file"
+          name="ufile"
+          id="filecss"
+          onchange="checkSize(this)"
+        />
+        <label for="filecss"><div id="up">+</div></label>
+        <div id="info">파일을 올려주세요.</div>
+        <input type="submit" value="전송" id="send" />
+      </form>
+    </div>
+  </body>
+</html>
