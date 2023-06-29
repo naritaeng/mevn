@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .query {
+        border: 1px solid black;
+        display: inline-block;
+        padding: 10px;
+        background: beige;
+        margin: 10px;
+      }
+      .post {
+        border: 1px solid black;
+        display: inline-block;
+        padding: 10px;
+        background: beige;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+      }
+      .post_span {
+        margin-right: 20px;
+      }
+      .post > input {
+        width: 100%;
+      }
+      .post > textarea {
+        width: 100%;
+      }
+      .upload {
+        border: 1px solid black;
+        display: inline-block;
+        padding: 10px;
+        background: beige;
+        margin: 10px;
+      }
+      #filecss {
+        display: none;
+      }
+      #up {
+        display: inline-block;
+        border-radius: 10px;
+        width: 50px;
+        height: 50px;
+        background: cornflowerblue;
+        font-size: 2rem;
+        text-align: center;
+        color: #fff;
+        box-shadow: 2px 2px 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="test">
+      <div class="query">
+        <h3>Query</h3>
+        이름 : <input type="text" name="name" required /><br />
+        나이 : <input type="text" name="id" required /><br /><br />
+        <input type="submit" />
+      </div>
+    </form>
+    <form action="data" method="post">
+      <div class="post">
+        <h3>Post</h3>
+        <span class="post_span">이름</span
+        ><input type="text" name="name" required /><br />
+        <span class="post_span">나이</span
+        ><input type="text" name="age" required /><br />
+        <span class="post_span">문의사항</span
+        ><textarea name="qna" id="" cols="30" rows="10"></textarea><br />
+        <input type="submit" />
+      </div>
+    </form>
+    <div class="upload">
+      <form action="/up" method="post" enctype="multipart/form-data">
+        <input type="file" name="ufile" id="filecss" />
+        <label for="filecss"><div id="up">+</div></label>
+        <div id="info">파일을 올려주세요.</div>
+        <input type="submit" value="전송" id="send" />
+      </form>
+    </div>
+  </body>
+</html>
