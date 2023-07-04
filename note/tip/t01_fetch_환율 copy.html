@@ -1,0 +1,57 @@
+<script>
+  /* 나 구문 */
+  let liveC
+  const test = async function () {
+    const url =
+      'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD'
+    await fetch(url)
+      .then((res) => res.json())
+      .then((data) => (liveC = data[0].basePrice))
+
+    const p = document.createElement('p')
+    const inputD = document.createElement('input')
+    const inputW = document.createElement('input')
+    const btn = document.createElement('button')
+
+    document.body.append(p, inputD, '달러', btn, inputW, '원')
+    p.textContent = `[KBO]현재의 달러 환율: ${liveC}`
+    inputD.setAttribute('id', '달러')
+    inputW.setAttribute('id', '원')
+    btn.textContent = '변환'
+    btn.style.margin = '0 10px'
+    btn.addEventListener('click', (value) => {
+      const D = +inputD.value
+      inputW.value = D * liveC
+    })
+  }
+  test()
+
+  /* 쳇gpt 구문 */
+  let liveD
+
+  const Exchange = async () => {
+    const url =
+      'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD'
+    const res = await fetch(url)
+    const data = await res.json()
+    liveD = data[0].basePrice
+
+    const p = document.createElement('p')
+    const inputD = document.createElement('input')
+    const inputW = document.createElement('input')
+    const btn = document.createElement('button')
+
+    document.body.append(p, inputD, '달러', btn, inputW, '원')
+    p.textContent = `[chat-gpt]현재의 달러 환율: ${liveD}`
+    inputD.setAttribute('id', '달러')
+    inputW.setAttribute('id', '원')
+    btn.textContent = '변환'
+    btn.style.margin = '0 10px'
+
+    btn.addEventListener('click', (value) => {
+      const D = +inputD.value
+      inputW.value = D * liveD
+    })
+  }
+  Exchange()
+</script>

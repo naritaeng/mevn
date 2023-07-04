@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        let liveChange
+        const exc = async function () {
+          const url =
+            'http://apis.data.go.kr/6260000/BusanBIMS/bitArrByArsno?serviceKey=BfIm6l2ZSlUzsKEA8zK4V9N1Aq7oFY44gR%2B9ncpiAqoqCzFOf2yw2LpHEBcyYX21YOX0Zh4i8cQBhFTkrioeJA%3D%3D&arsno=05712'
+          await fetch(url).then((res) => res.json().then())
+          console.log(url)
+        }
+        exc()
+      })
+    </script>
+  </head>
+  <body></body>
+</html>
