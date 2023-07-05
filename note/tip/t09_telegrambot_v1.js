@@ -32,6 +32,13 @@ bot.onText(/^잘가/, (msg, match) => {
   console.log(resp)
   bot.sendMessage(chatId, resp)
 })
+bot.onText(/^창준/, (msg, match) => {
+  const chatId = msg.chat.id
+  //   const resp = match['input'] //메아리
+  const resp = '두창이 안오고 지랄'
+  console.log(resp)
+  bot.sendMessage(chatId, resp)
+})
 bot.onText(/^음악차트/, async (msg, match) => {
   const chatId = msg.chat.id
 
