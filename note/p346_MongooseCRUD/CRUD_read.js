@@ -6,7 +6,7 @@ const main = async () => {
       title: { $eq: '홍길동' }
     },
     { _id: 0 }
-  ).lean()
+  ).lean() // p349 설명 효율적 메소드
   console.log(t)
 }
 main()
