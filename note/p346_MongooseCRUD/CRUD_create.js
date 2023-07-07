@@ -3,10 +3,10 @@ const Schema_ori = require('./CRUD_ori.js')
 const main = async () => {
   const _data = {
     albumId: 12012,
-    id: 312,
-    title: '홍길동',
-    url: 'google.com',
-    thumbnailUrl: 'https://naver.com'
+    id: 123,
+    title: '슈퍼맨',
+    url: 'naver.com',
+    thumbnailUrl: 'https://daum.net'
   }
 
   const CRUD_C = new Schema_ori(_data)
