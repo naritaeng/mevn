@@ -6,7 +6,7 @@ const Chat = new Schema({
     first_name: String,
     last_name: String
   },
-  date: { type: Date, dafault: Date.now },
+  date: { type: Date, dafault: Date.now, required: true },
   text: String
 })
 
