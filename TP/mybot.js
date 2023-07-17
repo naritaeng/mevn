@@ -11,11 +11,12 @@ const xlsx = require('node-xlsx')
 const path = require('path')
 const _path = path.join(__dirname, './xlsx')
 
-bot.onText(/^명령어/, (msg) => {
+bot.onText(/^!명령어/, (msg) => {
   const chatId = msg.chat.id
-  const resp = ` 불러오기-message_id,
-  수정-message_id text내용,
-  삭제-message_id,
+  const resp = `   !불러오기-message_id,
+  !수정-message_id text내용,
+  !삭제-message_id,
+  !전체삭제,
   안녕,
   로또번호,
   영화순위,
@@ -39,8 +40,47 @@ bot.onText(/^알람-(\d+)\s+(.+)/, (msg, match) => {
   }, time * 1000)
 })
 
+/* Create */
+bot.on('message', async (msg) => {
+  console.log(msg)
+  try {
+    if (msg.document) {
+      const chatId = msg.chat.id
+      const fileId = msg.document.file_id
+      const file = await bot.getFile(fileId)
+      const filePath = file.file_path
+      const fileLink = `https://api.telegram.org/file/bot${token}/${filePath}`
+
+      const res = await axios({
+        url: fileLink,
+        method: 'GET',
+        responseType: 'arraybuffer'
+      })
+
+      const fileName = msg.document.file_name
+      const filePathSave = `${_path}/${fileName}`
+      fs.writeFileSync(filePathSave, res.data)
+      console.log('File saved:', filePathSave)
+      await bot.sendMessage(chatId, `${fileName}이 저장됨`)
+    }
+    if (msg.text.startsWith('!')) return
+    const KST = new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
+    const chatData = new chatSchema({
+      message_id: msg.message_id,
+      from: msg.from,
+      chat: msg.chat,
+      date: KST,
+      text: msg.text
+    })
+    await chatData.save()
+    console.log('save success!')
+  } catch (e) {
+    console.log('save failed', e)
+  }
+})
+
 /* Read */
-bot.onText(/^불러오기-(\d+)/, async (msg, match) => {
+bot.onText(/^!불러오기-(\d+)/, async (msg, match) => {
   const chatId = msg.chat.id
   const messageId = parseInt(match[1])
 
@@ -69,7 +109,7 @@ bot.onText(/^불러오기-(\d+)/, async (msg, match) => {
 })
 
 /* Update */
-bot.onText(/^수정-(\d+)\s+(.+)/, async (msg, match) => {
+bot.onText(/^!수정-(\d+)\s+(.+)/, async (msg, match) => {
   const chatId = msg.chat.id
   const messageId = parseInt(match[1])
   const updatedText = match[2]
@@ -93,7 +133,7 @@ bot.onText(/^수정-(\d+)\s+(.+)/, async (msg, match) => {
 })
 
 /* Delete */
-bot.onText(/^삭제-(\d+)/, async (msg, match) => {
+bot.onText(/^!삭제-(\d+)/, async (msg, match) => {
   const chatId = msg.chat.id
   const messageId = parseInt(match[1])
 
@@ -114,7 +154,7 @@ bot.onText(/^삭제-(\d+)/, async (msg, match) => {
   }
 })
 
-bot.onText(/^전체삭제/, async (msg) => {
+bot.onText(/^!전체삭제/, async (msg) => {
   const chatId = msg.chat.id
   await bot.sendMessage(
     chatId,
@@ -135,48 +175,6 @@ bot.onText(/^전체삭제/, async (msg) => {
       await bot.sendMessage(chatId, '삭제 취소됨.')
     }
   })
-})
-
-/* Create */
-bot.on('message', async (msg) => {
-  console.log(msg)
-  try {
-    if (msg.document) {
-      const chatId = msg.chat.id
-      const fileId = msg.document.file_id
-
-      // Download the file
-      const file = await bot.getFile(fileId)
-      const filePath = file.file_path
-      const fileLink = `https://api.telegram.org/file/bot${token}/${filePath}`
-
-      const response = await axios({
-        url: fileLink,
-        method: 'GET',
-        responseType: 'arraybuffer'
-      })
-
-      // Save the file to the "xlsx" directory
-      const fileName = msg.document.file_name
-      const filePathSave = `${_path}/${fileName}`
-      fs.writeFileSync(filePathSave, response.data)
-      console.log('File saved:', filePathSave)
-      await bot.sendMessage(chatId, `${fileName}이 저장됨`)
-    }
-
-    const KST = new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
-    const chatData = new chatSchema({
-      message_id: msg.message_id,
-      from: msg.from,
-      chat: msg.chat,
-      date: KST,
-      text: msg.text
-    })
-    await chatData.save()
-    console.log('save success!')
-  } catch (e) {
-    console.log('save failed', e)
-  }
 })
 
 bot.onText(/^안녕/, (msg, match) => {

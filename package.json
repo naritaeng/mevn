@@ -23,6 +23,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "node-telegram-bot-api": "^0.61.0",
+    "node-xlsx": "^0.23.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "socket.io": "^4.6.2",
