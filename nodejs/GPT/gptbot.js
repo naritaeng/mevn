@@ -7,7 +7,7 @@ dotenv.config()
 
 // OpenAI API 키와 텔레그램 봇 토큰 가져오기
 const gpt3ApiKey = process.env.gptkey
-const telegramBotToken = process.env.bottk2
+const telegramBotToken = process.env.bottk3
 
 // OpenAI API 설정
 const configuration = new Configuration({
@@ -30,6 +30,8 @@ bot.on('message', async (msg) => {
   try {
     // GPT-3.5를 사용하여 응답 생성
     const answer = await gpt3(text)
+
+    // 텔레그램 봇에 응답 보내기
     bot.sendMessage(chatId, answer)
   } catch (error) {
     console.error('Error:', error.message)
